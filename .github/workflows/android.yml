@@ -33,6 +33,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Generate Android app icons from PK logo
+        run: |
+          npm install --save-dev @capacitor/assets
+          mkdir -p assets
+          cp source-app-icon.png assets/icon-only.png
+          cp source-app-icon.png assets/icon-foreground.png
+          npx capacitor-assets generate --android
+
       - name: Add Android project
         run: npx cap add android
 
